@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" media="screen,projection" />
+    <script src="js/moment.min.js"></script>
+
+    <!-- moment-duration-format plugin -->
+    <script src="js/moment-duration-format.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<style>
+    .row {
+        margin-bottom: 15px
+    }
+
+    .lead {
+        margin-top: 15px
+    }
+</style>
+
+<body style="margin: 2%;">
+    <div class="row">
+        <button id="start" title="Start" onclick="start()" type="button"
+            class="btn btn-outline-success btn-lg btn-block">Start</button>
+    </div>
+    <div class="row">
+        <button id="stop" title="Stop" disabled="true" onclick="stop()"
+            class="btn btn-outline-danger btn-lg btn-block">Stop</button>
+    </div>
+
+    <div class="jumbotron">
+        <div class="lead">
+            Loot Interval
+        </div>
+        <div class="progress" id="progress" style="height: 75%">
+            <div id="demo" class="progress-bar" role="progressbar" style="width: 0%;font-size: xxx-large;"
+                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="lead" style="height: 10%" id="Dummy">
+            Total Time:
+        </div>
+    </div>
+
+
+</body>
+
+
+<script>
+    var current = 0;
+    var x;
+    var seconds = 0, minutes = 0, hours = 0, days = 0;
+    var demo = document.getElementById("demo")
+
+    function secToFormat(seconds, format) {
+        return moment.duration(seconds, 'seconds').format(format, { trim: false });
+        // trim: false so it doesn't trim off 0 values
+        // (so last one would be 01:40 instead of 00:00:00:01:40 if trim: true)
+    }
+
+
+
+    function start() {
+
+        minMax = [105, 120]
+        document.getElementById('start').disabled = true
+        document.getElementById('stop').disabled = false
+
+        x = setInterval(function () {
+            percentage = current / 120;
+            demo.style.width = percentage * 100 + "%";
+            demo.innerText = current;
+            if (percentage < 0.85) {
+                demo.style.backgroundColor = "green";
+
+            }
+            else if (percentage < 0.91) {
+                demo.style.backgroundColor = "orange";
+            }
+            else if (percentage < 0.94) {
+                demo.style.backgroundColor = "red";
+            }
+            if (current >= minMax[1]) {
+                current = 0;
+            }
+            var humanized = secToFormat(current, "DD.HH:mm:ss")
+            document.getElementById("Dummy").innerText = "Total Time: " + humanized;
+            current++;
+
+        }, 1000);
+
+    }
+
+    function stop() {
+        minMax = [105, 120]
+        document.getElementById('start').disabled = false
+        document.getElementById('stop').disabled = true
+        clearInterval(x);
+        document.getElementById("demo").style.width = "0%";
+    }
+
+</script>
+
+</html>
