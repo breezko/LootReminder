@@ -10,22 +10,34 @@
 </head>
 
 <body>
-    <div class="input-group mb-3">
+    
+    <div class="input-group p-2 mb-1">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Alert #1</span>
         </div>
         <input id="alert-1" type="number" class="form-control" placeholder="Time in seconds for first alert (default 100)" aria-label="alert-timer-1" aria-describedby="alert-timer-1">
     </div>
-    <div class="input-group mb-3">
+    <div class="input-group p-2 mb-1">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Alert #2</span>
         </div>
         <input id="alert-2" type="number" class="form-control" placeholder="Time in seconds for second alert (default 110)" aria-label="alert-timer-2" aria-describedby="alert-timer-2">
     </div>
+    <div class="input-group p-2 mb-1">
+        <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="play-audio-check">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+    </div>
+    <div class="input-group p-2 mb-1">
+        <label for="customRange2" class="form-label">Audio Volume</label>
+        <input type="range" class="form-range" min="1" max="10" id="volume-value">   
+    </div>
     <div class="row p-3">
         <button id="start" title="Toggle" onclick="start()" type="button"
             class="btn btn-outline-success btn-lg btn-block">Start</button>
     </div>
+
     <div class="jumbotron p-2">
 
         <div class="lead">
