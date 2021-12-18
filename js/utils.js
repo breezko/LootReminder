@@ -12,9 +12,8 @@ function start() {
     var x, alertOne, alertTwo;
     var total = 0;
     const TIMEOUT = 120
-    minMax = [105, 120]
     running = !running;
-    if (alertOneElement.value != null && alertTwoElement.value != null) {
+    if (alertOneElement.value.length > 1 && alertTwoElement.value.length > 1) {
         alertOne = parseInt(alertOneElement.value) / TIMEOUT;
         alertTwo = parseInt(alertTwoElement.value) / TIMEOUT;
         console.log(alertOne);
